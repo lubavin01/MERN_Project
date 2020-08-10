@@ -47,9 +47,11 @@ router.get('/',
 router.get('/:id',
   auth,
   async (req, res) => {
-    try {
+    try {      
       const link = await Link.findById(req.params.id);
-      res.json(link);
+      setTimeout(() => {
+        res.json(link);
+      }, 2000);     // проверяем loader 
     } catch (e) {
       res.status(500).json({ message: 'Что-то пошло не так' });
     }
